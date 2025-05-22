@@ -4,6 +4,20 @@ using System.Text;
 
 namespace Certificates;
 
+
+// $params = @{
+//    Type = 'Custom'
+//    Subject = 'E=patti.fuller@contoso.com,CN=Patti Fuller'
+//    TextExtension = @(
+//        '2.5.29.37={text}1.3.6.1.5.5.7.3.4',
+//        '2.5.29.17={text}email=patti.fuller@contoso.com&email=pattifuller@contoso.com' )
+//    KeyAlgorithm = 'RSA'
+//    KeyLength = 2048
+//    SmimeCapabilities = $true
+//    CertStoreLocation = 'Cert:\CurrentUser\My'
+//}
+//New - SelfSignedCertificate @params
+
 internal class Program
 {
     // Run the following command first
@@ -17,7 +31,7 @@ internal class Program
         {
             Console.WriteLine(cert.SubjectName.Name);
         }
-        var certificate = store.Certificates.Find(X509FindType.FindBySubjectDistinguishedName, "CN=localhost", false).FirstOrDefault(); ;
+        var certificate = store.Certificates.Find(X509FindType.FindBySubjectDistinguishedName, "E=patti.fuller@contoso.com, CN=Patti Fuller", false).FirstOrDefault(); ;
         Console.WriteLine($"Found Certificate {certificate?.SubjectName.Name}");
 
         // Encrypt
